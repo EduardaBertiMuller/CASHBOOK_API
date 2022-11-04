@@ -3,8 +3,8 @@ const movimentoModel = require('../models/movimentModel');
 exports.post=async(data,idUser)=>{
     return await movimentoModel.post(data, idUser);
 }
-exports.get=async(query)=>{
-    return await movimentoModel.get(query);   
+exports.get=async()=>{
+    return await movimentoModel.get();   
 }
 
 exports.put=async(req,res)=>{

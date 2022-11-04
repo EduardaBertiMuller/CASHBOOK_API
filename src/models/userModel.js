@@ -10,6 +10,7 @@ get= async ()=>{
 login= async (data)=>{
    sql="SELECT id, name, email FROM user WHERE email='"
    +data.email+"' and password='"+data.password+"'";
+   console.log(sql);
    const users = await  mysql.query(sql);
    result=null;
    if(users[0].id){

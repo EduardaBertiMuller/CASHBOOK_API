@@ -1,30 +1,7 @@
 const mysql = require("./mysqlConnect");
 
 get= async (query)=>{
-    
-    query = JSON.parse(query);
-    sql= "SELECT ";
-    if(query.select.date){
-        sql+="date, ";
-    }
-    if(query.select.description){
-        sql+="description, ";
-    }
-    if(query.select.value){
-        sql+="value, ";
-    }
-    if(query.select.type){
-        sql+="type, ";
-    }
-    sql=sql.substring(0, sql.length - 2);//remover dois ultimos caracter da sctring
-    sql+=" FROM moviment"
-    if(query.where){
-        sql+=" WHERE"
-        query.where.forEach(item =>{
-            sql+=" "+item.campo+" "+item.operador.replace('/', '')+" '"+item.value+"' AND";
-        })
-        sql=sql.substring(0, sql.length - 3);//remover utilmo segmento 'END' da string
-    } 
+    sql=" SELECT * FROM moviment"
     return await  mysql.query(sql);
 }
 

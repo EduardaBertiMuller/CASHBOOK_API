@@ -26,7 +26,7 @@ router.get('/moviments', async (req, res, next)=>{
     auth= userController.verifyJWT(req.headers['x-access-token'])
     if(auth.idUser){
         if(req.headers.iduser==auth.idUser){
-           resp= await movimentoController.get(Buffer.from(req.query.query, 'base64').toString('utf-8'));
+           resp= await movimentoController.get();
            resp = Object.assign({}, resp, auth);
         }else{ 
             resp= {"status":"null", auth}
@@ -36,6 +36,21 @@ router.get('/moviments', async (req, res, next)=>{
     }
     res.status(200).send(resp)
 })
+/*
+router.get('/moviments', async (req, res, next)=>{
+    auth= userController.verifyJWT(req.headers['x-access-token'])
+    if(auth.idUser){
+        if(req.headers.iduser==auth.idUser){
+           resp= await movimentoController.get(Buffer.from(req.query.query, 'base64').toString('utf-8'));
+           resp = Object.assign({}, resp, auth);
+        }else{ 
+            resp= {"status":"null", auth}
+        }
+    }else{
+        resp= {"status":"null", auth}
+    }
+    res.status(200).send(resp)
+})*/
 
 router.post('/mov',async (req, res, next)=>{
     auth= userController.verifyJWT(req.headers['x-access-token'])
